@@ -20,11 +20,8 @@ public class Farm {
     @NotBlank
     private String name;
 
-    @Column(nullable = false)
-    private double latitude;
-
-    @Column(nullable = false)
-    private double longitude;
+    @OneToOne
+    private PostalAddress address;
 
     @ManyToOne
     @JoinColumn(name = "client_id", nullable = false)

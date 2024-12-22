@@ -18,6 +18,10 @@ public class Tree {
 
     @NotBlank
     private String type;
+    
+    private String species;
+
+    private Double height;
 
     private Integer age;
 

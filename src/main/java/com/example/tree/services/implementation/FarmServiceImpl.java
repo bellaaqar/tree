@@ -7,6 +7,7 @@ import com.example.tree.services.FarmService;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 public class FarmServiceImpl implements FarmService {
 
@@ -38,5 +39,10 @@ public class FarmServiceImpl implements FarmService {
     @Override
     public void deleteFarm(Long id) {
         farmRepository.deleteById(id);
+    }
+
+    @Override
+    public FarmDto getFarmById(Long id) {
+        return farmMapper.toDto(farmRepository.findById(id).orElseThrow());
     }
 }
