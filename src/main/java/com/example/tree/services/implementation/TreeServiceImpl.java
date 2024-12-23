@@ -2,6 +2,7 @@ package com.example.tree.services.implementation;
 
 import com.example.tree.entities.dtos.TreeDto;
 import com.example.tree.mappers.TreeMapper;
+import com.example.tree.repositories.FarmRepository;
 import com.example.tree.repositories.TreeRepository;
 import com.example.tree.services.TreeService;
 
@@ -14,10 +15,12 @@ public class TreeServiceImpl implements TreeService {
 
     final TreeMapper treeMapper;
     final TreeRepository treeRepository;
+    final FarmRepository farmRepository;
 
-    public TreeServiceImpl(TreeMapper treeMapper, TreeRepository treeRepository) {
+    public TreeServiceImpl(TreeMapper treeMapper, TreeRepository treeRepository, FarmRepository farmRepository) {
         this.treeMapper = treeMapper;
         this.treeRepository = treeRepository;
+      this.farmRepository = farmRepository;
     }
 
     @Override
@@ -32,6 +35,13 @@ public class TreeServiceImpl implements TreeService {
 
     @Override
     public TreeDto addTree(TreeDto treeDto) {
+        farmRepository.findById(treeDto.getFarmId())
+            .map(farmsTree -> {
+                treeDto.setFarm(farmsTree);
+                return treeDto;
+            })
+            .orElseThrow(() -> new RuntimeException("Farm not found with id: " + treeDto.getFarmId()));
+
         return treeMapper.toDto(treeRepository.save(treeMapper.toEntity(treeDto)));
     }
 

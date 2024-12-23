@@ -1,5 +1,7 @@
 package com.example.tree.entities;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,6 +21,14 @@ public class Farm {
 
     @NotBlank
     private String name;
+
+    @Min(value = -90, message = "Latitude must be greater than or equal to -90")
+    @Max(value = 90, message = "Latitude must be less than or equal to 90")
+    private double latitude;
+
+    @Min(value = -180, message = "Longitude must be greater than or equal to -180")
+    @Max(value = 180, message = "Longitude must be less than or equal to 180")
+    private double longitude;
 
     @OneToOne
     private PostalAddress address;
