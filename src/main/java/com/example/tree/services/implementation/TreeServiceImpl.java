@@ -7,7 +7,9 @@ import com.example.tree.services.TreeService;
 
 import java.util.Collections;
 import java.util.List;
+import org.springframework.stereotype.Service;
 
+@Service
 public class TreeServiceImpl implements TreeService {
 
     final TreeMapper treeMapper;

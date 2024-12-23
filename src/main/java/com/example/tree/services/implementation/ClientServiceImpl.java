@@ -4,10 +4,11 @@ import com.example.tree.entities.dtos.ClientDto;
 import com.example.tree.mappers.ClientMapper;
 import com.example.tree.repositories.ClientRepository;
 import com.example.tree.services.ClientService;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
+@Service
 public class ClientServiceImpl implements ClientService {
 
     final ClientMapper clientMapper;

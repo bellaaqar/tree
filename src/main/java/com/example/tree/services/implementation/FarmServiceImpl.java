@@ -4,11 +4,13 @@ import com.example.tree.entities.dtos.FarmDto;
 import com.example.tree.mappers.FarmMapper;
 import com.example.tree.repositories.FarmRepository;
 import com.example.tree.services.FarmService;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class FarmServiceImpl implements FarmService {
 
     final FarmMapper farmMapper;
