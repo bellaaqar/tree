@@ -1,0 +1,20 @@
+spring:
+  main:
+    lazy-initialization: true
+    allow-bean-definition-overriding: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:postgresql://localhost:5432/farm-db
+    username: admin
+    password: password
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 3
+      max-lifetime: 90000
+      connection-timeout: 300000
+      leak-detection-threshold: 300000
+      idle-timeout: 120000
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.xml
